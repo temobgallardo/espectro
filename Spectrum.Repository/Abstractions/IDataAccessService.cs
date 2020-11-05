@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Spectrum.Repository.Abstractions
 {
-    class IDataAccessService
+    public class IDataAccessService
     {
     }
 }

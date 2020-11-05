@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Droid", "Spectrum.Droid\Spectrum.Droid.csproj", "{6B756356-3D44-466D-9E58-70F710A59F35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Core", "Spectrum.Core\Spectrum.Core.csproj", "{C83E246B-733A-4D92-B5E2-E44B6AC07FB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spectrum.Core", "Spectrum.Core\Spectrum.Core.csproj", "{C83E246B-733A-4D92-B5E2-E44B6AC07FB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Repository", "Spectrum.Repository\Spectrum.Repository.csproj", "{9F4EE6E9-ECA2-49FB-9232-9C1DF9D72299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spectrum.Repository", "Spectrum.Repository\Spectrum.Repository.csproj", "{9F4EE6E9-ECA2-49FB-9232-9C1DF9D72299}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Utils", "Spectrum.Utils\Spectrum.Utils.csproj", "{522863FB-01C8-4E19-8769-6FB1E1EF0387}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{9F4EE6E9-ECA2-49FB-9232-9C1DF9D72299}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F4EE6E9-ECA2-49FB-9232-9C1DF9D72299}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F4EE6E9-ECA2-49FB-9232-9C1DF9D72299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{522863FB-01C8-4E19-8769-6FB1E1EF0387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{522863FB-01C8-4E19-8769-6FB1E1EF0387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{522863FB-01C8-4E19-8769-6FB1E1EF0387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{522863FB-01C8-4E19-8769-6FB1E1EF0387}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
