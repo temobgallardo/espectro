@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Utils", "Spectrum.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.UITest", "Spectrum.UITest\Spectrum.UITest.csproj", "{42753687-CA2A-4E77-812D-C6F65A32DC79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.UnitTest", "Spectrum.UnitTest\Spectrum.UnitTest.csproj", "{6FAA3B25-C382-48C6-8956-B0E6B2DBFCCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{42753687-CA2A-4E77-812D-C6F65A32DC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42753687-CA2A-4E77-812D-C6F65A32DC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42753687-CA2A-4E77-812D-C6F65A32DC79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAA3B25-C382-48C6-8956-B0E6B2DBFCCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAA3B25-C382-48C6-8956-B0E6B2DBFCCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAA3B25-C382-48C6-8956-B0E6B2DBFCCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAA3B25-C382-48C6-8956-B0E6B2DBFCCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
