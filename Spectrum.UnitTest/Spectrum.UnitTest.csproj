@@ -13,4 +13,10 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Spectrum.Core\Spectrum.Core.csproj" />
+    <ProjectReference Include="..\Spectrum.Repository\Spectrum.Repository.csproj" />
+    <ProjectReference Include="..\Spectrum.Utils\Spectrum.Utils.csproj" />
+  </ItemGroup>
+
 </Project>
