@@ -1,10 +1,14 @@
-﻿using System;
+﻿using MvvmCross.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Spectrum.Core.ViewModels
 {
-    class SuccessLoginViewModel
+    public class SuccessLoginViewModel : BaseViewModel
     {
+        public SuccessLoginViewModel(IMvxNavigationService navigationService) : base(navigationService)
+        {
+        }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Spectrum.Repository.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Spectrum.Repository.Services
 {
-    class FakeUserAccessDataService
+    public class FakeUserAccessDataService : IDataAccessService
     {
     }
 }

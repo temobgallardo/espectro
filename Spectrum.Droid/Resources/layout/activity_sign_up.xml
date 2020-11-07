@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/et_first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_user_et_first_name"
+        android:gravity="center"
+        app:MvxBind="Text FirstName"/>
+    <EditText
+        android:id="@+id/et_last_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_user_et_last_name"
+        android:gravity="center"
+        app:MvxBind="Text LastName"/>
+    <EditText
+        android:id="@+id/et_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_user_et_user_name"
+        android:gravity="center"
+        app:MvxBind="Text UserName"/>
+    <EditText
+        android:id="@+id/et_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_user_et_phone_number"
+        android:gravity="center"
+        app:MvxBind="Text PhoneNumber"/>
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_user_et_password"
+        android:gravity="center"
+        android:inputType="textPassword"
+        app:MvxBind="Text Password"/>
+    <Button
+        android:id="@+id/dp_service_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_select_service_date"/>
+    <Button
+        android:id="@+id/btn_create_account"
+        android:text="@string/add_user_btn_create_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:MvxBind="Click SignUpCommand"/>
+</LinearLayout>

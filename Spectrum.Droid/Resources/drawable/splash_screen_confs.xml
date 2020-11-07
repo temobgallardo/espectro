@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <color android:color="@color/splash_background"/>
+  </item>
+  <item
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <bitmap
+      android:src="@drawable/spectrum_logo_200x45px"
+      android:tileMode="disabled"
+      android:gravity="center"
+      />
+  </item>
+</layer-list>

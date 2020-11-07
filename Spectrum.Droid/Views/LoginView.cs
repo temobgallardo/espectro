@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platforms.Android.Presenters.Attributes;
+using Spectrum.Core.ViewModels;
 
-namespace Spectrum.Login.Views
+namespace Spectrum.Droid.Views
 {
-    class LoginView
+    [MvxActivityPresentation]
+    [Activity(Theme = "@style/AppTheme")]
+    public class LoginView: MvxAppCompatActivity<LoginViewModel>
     {
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+            SetContentView(Resource.Layout.activity_login);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetDisplayShowHomeEnabled(true);
+            SupportActionBar.Title = ApplicationContext.Resources.GetString(Resource.String.login_title);
+        }
     }
 }
