@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Spectrum.Repository.Abstractions
 {
-    public class IDataAccessService
+    public interface IDataAccessService<T>
     {
+        Task<bool> VerifyCredentials(T credentials);
+        Task<IList<T>> GetEntitiesAsync();
+        Task<int> SaveEntityAsync(T entity);
+        Task<int> DeleteAllEntitiesAsync();
     }
 }

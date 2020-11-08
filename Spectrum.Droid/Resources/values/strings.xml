@@ -2,12 +2,12 @@
   <string name="app_name">Spectrum.Login</string>
   <string name="action_settings">Settings</string>
   <!--Login View-->
-  <string name="login_et_user_name">User name</string>
-  <string name="login_et_password">Password</string>
-  <string name="login_btn_login">Log in</string>
-  <string name="login_tv_new_user">Don\'t have an account?</string>
-  <string name="login_tv_sign_up">Sign up</string>
-  <string name="login_title">Login</string>
+  <string name="signin_et_user_name">User name</string>
+  <string name="signin_et_password">Password</string>
+  <string name="signin_btn_signin">Log in</string>
+  <string name="signin_tv_new_user">Don\'t have an account?</string>
+  <string name="signin_tv_sign_up">Sign up</string>
+  <string name="signin_title">Sign in</string>
   <!--Sign Up View-->
   <string name="add_user_et_first_name">First name</string>
   <string name="add_user_et_last_name">Last name</string>
@@ -20,4 +20,4 @@
   <string name="btn_select_service_date">Select Date</string>
   <string name="tv_successful_signup">Successful sign up</string>
   <string name="title_success_signup">Success!</string>
-  </resources>
+</resources>

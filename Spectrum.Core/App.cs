@@ -1,8 +1,10 @@
-﻿using MvvmCross;
+﻿using Acr.UserDialogs;
+using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using Spectrum.Core.ViewModels;
 using Spectrum.Repository.Abstractions;
+using Spectrum.Repository.Entities;
 using Spectrum.Repository.Services;
 
 namespace Spectrum.Core
@@ -18,11 +20,13 @@ namespace Spectrum.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IUserDialogs>(() => UserDialogs.Instance);
             Mvx
                 .IoCProvider
-                .LazyConstructAndRegisterSingleton<IDataAccessService, FakeUserAccessDataService>();
-            RegisterAppStart<LoginViewModel>();
+                .LazyConstructAndRegisterSingleton(() => UserDialogs.Instance);
+            Mvx
+                .IoCProvider
+                .LazyConstructAndRegisterSingleton<IDataAccessService<User>, DataAccessServiceImp>(); ;
+            RegisterAppStart<SignInViewModel>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Runtime;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Spectrum.Core;
@@ -16,7 +17,7 @@ namespace Spectrum.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            //UserDialogs.Init(this);
+            UserDialogs.Init(this);
         }
     }
 }

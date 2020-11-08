@@ -24,7 +24,7 @@ namespace Spectrum.Utils
         }
         public static bool IsNameValid(string name)
         {
-            throw new NotImplementedException();
+            return true;
         }
         public static bool IsPhoneNumberValid(string phoneNumber)
         {
