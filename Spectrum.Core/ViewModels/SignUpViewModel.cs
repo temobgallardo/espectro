@@ -110,7 +110,7 @@ namespace Spectrum.Core.ViewModels
                 return;
             }
 
-            await _navigationService.Navigate<SuccessLoginViewModel>();
+            await _navigationService.Navigate<SuccessSignupViewModel>();
         }
 
         private async Task Back()

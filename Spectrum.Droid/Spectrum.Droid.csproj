@@ -83,8 +83,8 @@
     <Compile Include="Views\SignUpView.cs" />
     <Compile Include="Views\SignInView.cs" />
     <Compile Include="Views\SplashScreenView.cs" />
-    <Compile Include="Views\SuccessLoginView.cs" />
     <Compile Include="Views\DatePickerFragment.cs" />
+    <Compile Include="Views\SuccessSignupView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -154,11 +154,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_success_login.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_splash_screen.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -188,6 +183,9 @@
     <AndroidResource Include="Resources\layout\activity_accounts.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_success_signup.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -26,11 +26,11 @@ namespace Spectrum.UnitTest
         [Fact]
         public void Should_EnableSignUpButton()
         {
-            _navigationServiceMock.Setup(nav => nav.Navigate<SuccessLoginViewModel>(null, default)).ReturnsAsync(true);
+            _navigationServiceMock.Setup(nav => nav.Navigate<SuccessSignupViewModel>(null, default)).ReturnsAsync(true);
             _signInViewModel.Password = "a"; 
             _signInViewModel.UserName = "a" ;
             _signInViewModel.SignInCommand.Execute();
-            _navigationServiceMock.Verify(nav => nav.Navigate<SuccessLoginViewModel>(null, default), Times.Once);
+            _navigationServiceMock.Verify(nav => nav.Navigate<SuccessSignupViewModel>(null, default), Times.Once);
             Assert.True(_signInViewModel.IsUserOrPassOk);
         }
     }

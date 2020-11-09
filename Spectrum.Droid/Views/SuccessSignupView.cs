@@ -9,17 +9,16 @@ namespace Spectrum.Droid.Views
 {
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme", NoHistory = true)]
-    public class SuccessLoginView : MvxAppCompatActivity<SuccessLoginViewModel>
+    public class SuccessSignupView : MvxAppCompatActivity<SuccessSignupViewModel>
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.activity_success_login);
+            SetContentView(Resource.Layout.activity_success_signup);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowHomeEnabled(true);
             SupportActionBar.Title = GetString(Resource.String.title_success_signup);
         }
-
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
