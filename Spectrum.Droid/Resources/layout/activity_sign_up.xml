@@ -46,7 +46,7 @@
         android:layout_margin="4dp"
         app:layout_constraintLeft_toLeftOf="@id/et_user_name"
         app:layout_constraintTop_toBottomOf="@id/et_user_name"
-        app:MvxBind="Text PhoneNumber"/>
+        app:MvxBind="Text PhoneNumber, Mode=TwoWay"/>
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"

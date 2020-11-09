@@ -16,6 +16,7 @@ namespace Spectrum.Core.ViewModels
         private string _lastName;
         private string _userName;
         private string _password;
+        private string _phoneNumber;
         private DateTime _serviceDate;
         private bool _areFieldsPopulated;
 
@@ -29,7 +30,7 @@ namespace Spectrum.Core.ViewModels
             get => _firstName;
             set
             {
-                AreFieldsPopulated = CheckThatFieldAreRight();
+                AreFieldsPopulated = AreFieldsRight();
 
                 SetProperty(ref _firstName, value);
             }
@@ -39,7 +40,7 @@ namespace Spectrum.Core.ViewModels
             get => _lastName;
             set
             {
-                AreFieldsPopulated = CheckThatFieldAreRight();
+                AreFieldsPopulated = AreFieldsRight();
 
                 SetProperty(ref _lastName, value);
             }
@@ -49,7 +50,7 @@ namespace Spectrum.Core.ViewModels
             get => _userName;
             set
             {
-                AreFieldsPopulated = CheckThatFieldAreRight();
+                AreFieldsPopulated = AreFieldsRight();
 
                 SetProperty(ref _userName, value);
             }
@@ -59,7 +60,22 @@ namespace Spectrum.Core.ViewModels
             get => _password;
             set
             {
-                AreFieldsPopulated = CheckThatFieldAreRight();
+                AreFieldsPopulated = AreFieldsRight();
+
+                SetProperty(ref _password, value);
+            }
+        }
+        public string PhoneNumber
+        {
+            get => _phoneNumber;
+            set
+            {
+                AreFieldsPopulated = AreFieldsRight();
+
+                if (Utils.Utils.IsPhoneNumberValid(value))
+                {
+                    value = Utils.Utils.FormatPhoneNumber(value);
+                }
 
                 SetProperty(ref _password, value);
             }
@@ -81,11 +97,15 @@ namespace Spectrum.Core.ViewModels
             BackCommand = new MvxAsyncCommand(Back);
         }
 
-        private bool CheckThatFieldAreRight()
+        private bool AreFieldsRight()
         {
-
-            if (Utils.Utils.IsNameValid(FirstName) && Utils.Utils.IsNameValid(LastName) && Utils.Utils.IsNameValid(UserName) && Utils.Utils.IsPasswordValid(Password))
-                return true;
+            try
+            {
+                if (Utils.Utils.IsNameValid(FirstName) && Utils.Utils.IsNameValid(LastName) && Utils.Utils.IsNameValid(UserName) && Utils.Utils.IsPasswordValid(Password) && Utils.Utils.IsPhoneNumberValid(PhoneNumber))
+                    return true;
+            } 
+            catch (ArgumentException)
+            {  }
 
             return false;
         }
