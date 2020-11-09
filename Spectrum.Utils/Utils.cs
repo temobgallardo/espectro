@@ -41,7 +41,7 @@ namespace Spectrum.Utils
 
             string pattern = @"^(\d{3})[ -]?(\d{3})[ -]?(\d{4})";
 
-            return Regex.Replace(phoneNumber, pattern, @"($1) $2-$3");
+            return Regex.Replace(phoneNumber, pattern, @"($1)-$2-$3");
         }
         public static bool IsServiceDateCurrent(DateTime date)
         {

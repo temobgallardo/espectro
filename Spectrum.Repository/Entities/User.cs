@@ -11,6 +11,7 @@ namespace Spectrum.Repository.Entities
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
         [MaxLength(15)]
         public string Password { get; set; }
         public DateTime Start { get; set; }

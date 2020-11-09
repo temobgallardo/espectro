@@ -16,6 +16,8 @@ namespace Spectrum.Core.ViewModels
         private string _lastName;
         private string _userName;
         private string _password;
+        private string _phoneNumberNotFormated;
+        private bool _isPhoneNumberAlreadyFormatted;
         private string _phoneNumber;
         private DateTime _serviceDate;
         private bool _areFieldsPopulated;
@@ -72,12 +74,26 @@ namespace Spectrum.Core.ViewModels
             {
                 AreFieldsPopulated = AreFieldsRight();
 
+                if (Utils.Utils.IsPhoneNumberValid(value) && !_isPhoneNumberAlreadyFormatted)
+                {
+                    _phoneNumberNotFormated = value;
+                    _isPhoneNumberAlreadyFormatted = true;
+                }
+
                 if (Utils.Utils.IsPhoneNumberValid(value))
                 {
                     value = Utils.Utils.FormatPhoneNumber(value);
                 }
 
-                SetProperty(ref _password, value);
+                if (value.Length <= 14)
+                {
+                    SetProperty(ref _phoneNumber, value);
+                }
+                else
+                {
+                    SetProperty(ref _phoneNumber, Utils.Utils.FormatPhoneNumber(_phoneNumberNotFormated));
+                    RaisePropertyChanged();
+                }
             }
         }
         public DateTime ServiceDate
@@ -91,6 +107,7 @@ namespace Spectrum.Core.ViewModels
         public SignUpViewModel(IMvxNavigationService navigationService, IDataAccessService<User> dataAccessService, IUserDialogs userDialogs) : base(navigationService)
         {
             AreFieldsPopulated = false;
+            _isPhoneNumberAlreadyFormatted = false;
             _userDialogsService = userDialogs;
             _dataAccessService = dataAccessService;
             SignUpCommand = new MvxAsyncCommand(SignUpAsync);
@@ -101,11 +118,15 @@ namespace Spectrum.Core.ViewModels
         {
             try
             {
-                if (Utils.Utils.IsNameValid(FirstName) && Utils.Utils.IsNameValid(LastName) && Utils.Utils.IsNameValid(UserName) && Utils.Utils.IsPasswordValid(Password) && Utils.Utils.IsPhoneNumberValid(PhoneNumber))
+                var isPhoneOk = _isPhoneNumberAlreadyFormatted || Utils.Utils.IsPhoneNumberValid(PhoneNumber);
+
+                if (Utils.Utils.IsNameValid(FirstName) && Utils.Utils.IsNameValid(LastName) && Utils.Utils.IsNameValid(UserName) && Utils.Utils.IsPasswordValid(Password) && isPhoneOk)
+                {
                     return true;
-            } 
+                }
+            }
             catch (ArgumentException)
-            {  }
+            { }
 
             return false;
         }
@@ -118,6 +139,7 @@ namespace Spectrum.Core.ViewModels
                 LastName = _lastName,
                 Password = _password,
                 Start = _serviceDate,
+                PhoneNumber = _phoneNumberNotFormated,
                 UserName = _userName
             };
 
