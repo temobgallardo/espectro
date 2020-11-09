@@ -75,7 +75,7 @@
     <Compile Include="DeviceServices\DatabaseDeviceLocation.cs" />
     <Compile Include="IDatabasePath.cs" />
     <Compile Include="MainApplication.cs" />
-    <Compile Include="MvxLinker.cs" />
+    <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Setup.cs" />

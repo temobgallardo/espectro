@@ -32,9 +32,8 @@ namespace Spectrum.Core.ViewModels
             get => _firstName;
             set
             {
-                AreFieldsPopulated = AreFieldsRight();
-
                 SetProperty(ref _firstName, value);
+                AreFieldsPopulated = AreFieldsRight();
             }
         }
         public string LastName
@@ -42,9 +41,8 @@ namespace Spectrum.Core.ViewModels
             get => _lastName;
             set
             {
-                AreFieldsPopulated = AreFieldsRight();
-
                 SetProperty(ref _lastName, value);
+                AreFieldsPopulated = AreFieldsRight();
             }
         }
         public string UserName
@@ -52,9 +50,8 @@ namespace Spectrum.Core.ViewModels
             get => _userName;
             set
             {
-                AreFieldsPopulated = AreFieldsRight();
-
                 SetProperty(ref _userName, value);
+                AreFieldsPopulated = AreFieldsRight();
             }
         }
         public string Password
@@ -62,9 +59,8 @@ namespace Spectrum.Core.ViewModels
             get => _password;
             set
             {
-                AreFieldsPopulated = AreFieldsRight();
-
                 SetProperty(ref _password, value);
+                AreFieldsPopulated = AreFieldsRight();
             }
         }
         public string PhoneNumber
@@ -72,7 +68,7 @@ namespace Spectrum.Core.ViewModels
             get => _phoneNumber;
             set
             {
-                AreFieldsPopulated = AreFieldsRight();
+                value = Utils.Utils.GetNumbersFromFormatedPhoneNumber(value);
 
                 if (Utils.Utils.IsPhoneNumberValid(value) && !_isPhoneNumberAlreadyFormatted)
                 {
@@ -84,16 +80,14 @@ namespace Spectrum.Core.ViewModels
                 {
                     value = Utils.Utils.FormatPhoneNumber(value);
                 }
-
-                if (value.Length <= 14)
-                {
-                    SetProperty(ref _phoneNumber, value);
-                }
                 else
                 {
-                    SetProperty(ref _phoneNumber, Utils.Utils.FormatPhoneNumber(_phoneNumberNotFormated));
-                    RaisePropertyChanged();
+                    _isPhoneNumberAlreadyFormatted = false;
                 }
+
+                SetProperty(ref _phoneNumber, value);
+
+                AreFieldsPopulated = AreFieldsRight();
             }
         }
         public DateTime ServiceDate

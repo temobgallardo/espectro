@@ -7,27 +7,40 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:hapticFeedbackEnabled="false">
-    <EditText
-        android:id="@+id/et_user_name"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/signin_et_user_name"
-        android:gravity="center"
         android:layout_margin="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:MvxBind="Text UserName"/>
-    <EditText
-        android:id="@+id/et_password"
+        android:layout_marginTop="8dp">
+        <EditText
+            android:id="@+id/et_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/signin_et_user_name"
+            android:gravity="center"
+            app:MvxBind="Text UserName"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/signin_et_password"
-        android:gravity="center"
-        android:inputType="textPassword"
         android:layout_margin="4dp"
-        app:layout_constraintLeft_toLeftOf="@id/et_user_name"
-        app:layout_constraintTop_toBottomOf="@id/et_user_name"
-        app:MvxBind="Text Password"/>
+        app:layout_constraintLeft_toLeftOf="@id/til_user_name"
+        app:layout_constraintTop_toBottomOf="@id/til_user_name"
+        android:layout_marginTop="8dp">
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/signin_et_password"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:layout_margin="4dp"
+            app:MvxBind="Text Password"/>
+    </android.support.design.widget.TextInputLayout>
     <Button
         android:id="@+id/btn_signin"
         android:text="@string/signin_btn_signin"
@@ -35,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:background="@drawable/abc_btn_colored_material"
-        app:layout_constraintTop_toBottomOf="@id/et_password"
+        app:layout_constraintTop_toBottomOf="@id/til_et_password"
         app:layout_constraintBottom_toTopOf="@id/tv_no_account_txt"
         app:MvxBind="Click SignInCommand; Enabled IsUserOrPassOk"/>
     <TextView

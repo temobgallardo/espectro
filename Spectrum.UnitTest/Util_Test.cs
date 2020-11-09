@@ -90,6 +90,18 @@ namespace Spectrum.UnitTest
                 Assert.Equal(expected, actual);
             }
         }
+        [Theory]
+        [InlineData("", "")]
+        [InlineData("(404)-521-1234", "4045211234")]
+        [InlineData("(404)-521-12341", "40452112341")]
+        [InlineData("(404)-521-12", "40452112")]
+        [InlineData("40452112", "40452112")]
+        [InlineData("40452112341", "40452112341")]
+        public static void GetNumbersFromFormatedPhoneNumber_Test(string phoneNumber, string expected)
+        {
+            var actual = Utils.Utils.GetNumbersFromFormatedPhoneNumber(phoneNumber);
+            Assert.Equal(expected, actual);
+        }
         [Fact]
         public static void IsServiceDateCurrent_ShouldBeThisDay()
         {

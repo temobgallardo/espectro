@@ -8,7 +8,7 @@ namespace Spectrum.Utils
         public static bool IsPasswordValid(string password)
         {
             if (string.IsNullOrEmpty(password)) return false;
-            
+
             string pattern =
                 @"^" +              // Matches beginning of a line
                 @"(?!.*(.)\1)" +    // For repeated following characters
@@ -23,7 +23,7 @@ namespace Spectrum.Utils
         public static bool IsNameValid(string name)
         {
             if (string.IsNullOrEmpty(name)) return false;
-            var pattern = "^[a-zA-Z]{2,}";
+            var pattern = "^[a-zA-Z]{1,}";
             return Regex.IsMatch(name, pattern);
         }
         public static bool IsPhoneNumberValid(string phoneNumber)
@@ -42,6 +42,19 @@ namespace Spectrum.Utils
             string pattern = @"^(\d{3})[ -]?(\d{3})[ -]?(\d{4})";
 
             return Regex.Replace(phoneNumber, pattern, @"($1)-$2-$3");
+        }
+        public static string GetNumbersFromFormatedPhoneNumber(string formatPhoneNumber)
+        {
+            if (string.IsNullOrEmpty(formatPhoneNumber)) return string.Empty; 
+
+            string pattern = @"\d+";
+
+            var matches = Regex.Matches(formatPhoneNumber, pattern);
+            if (matches.Count > 3) return string.Empty;
+            if (matches.Count == 2) return matches[0].ToString() + matches[1];
+            if (matches.Count == 1) return matches[0].ToString();
+
+            return matches[0].ToString() + matches[1] + matches[2];
         }
         public static bool IsServiceDateCurrent(DateTime date)
         {

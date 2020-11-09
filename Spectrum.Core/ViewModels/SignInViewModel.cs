@@ -25,9 +25,11 @@ namespace Spectrum.Core.ViewModels
             get => _userName;
             set
             {
+                SetProperty(ref _userName, value);
+
                 IsUserOrPassOk = Utils.Utils.IsNameValid(_userName) && Utils.Utils.IsPasswordValid(_password);
 
-                SetProperty(ref _userName, value);
+                _userDialogsService.Toast("Remember: user name only accept alphanumerics.");
             }
         }
         public string Password
@@ -35,9 +37,12 @@ namespace Spectrum.Core.ViewModels
             get => _password;
             set
             {
+                SetProperty(ref _password, value);
+
                 IsUserOrPassOk = Utils.Utils.IsNameValid(_userName) && Utils.Utils.IsPasswordValid(_password);
 
-                SetProperty(ref _password, value);
+
+                _userDialogsService.Toast("Password must contain: \nFrom 8 - 15 characters.\nAt least one words and digit.\nFollowing characters must be different.");
             }
         }
         public IMvxAsyncCommand SignInCommand { get; private set; }
