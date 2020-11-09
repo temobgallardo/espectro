@@ -81,12 +81,12 @@ namespace Spectrum.Core.ViewModels
             var isSigned = await _dataAccessService.VerifyCredentials(user);
             if (!isSigned)
             {
-                _userDialogsService.Alert("Your user is incorrect. Try again or log with different credentials");
+                _userDialogsService.Alert("Your user is incorrect. Try again or log in with different credentials");
                 
                 return;
             }
 
-            await _navigationService.Navigate<SuccessLoginViewModel>();
+            await _navigationService.Navigate<AccountsViewModel>();
         }
 
         private async Task Back()

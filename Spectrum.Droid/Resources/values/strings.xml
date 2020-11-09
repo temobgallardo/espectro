@@ -20,4 +20,6 @@
   <string name="btn_select_service_date">Select Date</string>
   <string name="tv_successful_signup">Successful sign up</string>
   <string name="title_success_signup">Success!</string>
+  <!--Account View-->
+  <string name="av_title">Accounts</string>
 </resources>

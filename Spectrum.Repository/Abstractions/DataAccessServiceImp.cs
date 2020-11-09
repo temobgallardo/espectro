@@ -42,7 +42,7 @@ namespace Spectrum.Repository.Abstractions
             var result = table.Where(x => x.UserName == credentials.UserName && x.Password == credentials.Password);
             //var query = $"select first() from {db.Table<User>()} where  UserName == {credentials.UserName} and Password == {credentials.Password}";
             //var user = await db.FindWithQueryAsync<User>(query);
-            return await result.CountAsync() == 1;
+            return await result.CountAsync() >= 1;
         }
     }
 }
