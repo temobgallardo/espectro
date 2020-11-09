@@ -17,26 +17,52 @@ namespace Spectrum.Core.ViewModels
         private string _userName;
         private string _password;
         private DateTime _serviceDate;
+        private bool _areFieldsPopulated;
 
+        public bool AreFieldsPopulated
+        {
+            get => _areFieldsPopulated;
+            set => SetProperty(ref _areFieldsPopulated, value);
+        }
         public string FirstName
         {
             get => _firstName;
-            private set => SetProperty(ref _firstName, value);
+            set
+            {
+                AreFieldsPopulated = CheckThatFieldAreRight();
+
+                SetProperty(ref _firstName, value);
+            }
         }
         public string LastName
         {
             get => _lastName;
-            set => SetProperty(ref _lastName, value);
+            set
+            {
+                AreFieldsPopulated = CheckThatFieldAreRight();
+
+                SetProperty(ref _lastName, value);
+            }
         }
         public string UserName
         {
             get => _userName;
-            set => SetProperty(ref _userName, value);
+            set
+            {
+                AreFieldsPopulated = CheckThatFieldAreRight();
+
+                SetProperty(ref _userName, value);
+            }
         }
         public string Password
         {
             get => _password;
-            set => SetProperty(ref _password, value);
+            set
+            {
+                AreFieldsPopulated = CheckThatFieldAreRight();
+
+                SetProperty(ref _password, value);
+            }
         }
         public DateTime ServiceDate
         {
@@ -48,10 +74,20 @@ namespace Spectrum.Core.ViewModels
 
         public SignUpViewModel(IMvxNavigationService navigationService, IDataAccessService<User> dataAccessService, IUserDialogs userDialogs) : base(navigationService)
         {
-            _userDialogsService = _userDialogsService;
+            AreFieldsPopulated = false;
+            _userDialogsService = userDialogs;
             _dataAccessService = dataAccessService;
             SignUpCommand = new MvxAsyncCommand(SignUpAsync);
             BackCommand = new MvxAsyncCommand(Back);
+        }
+
+        private bool CheckThatFieldAreRight()
+        {
+
+            if (Utils.Utils.IsNameValid(FirstName) && Utils.Utils.IsNameValid(LastName) && Utils.Utils.IsNameValid(UserName) && Utils.Utils.IsPasswordValid(Password))
+                return true;
+
+            return false;
         }
 
         private async Task SignUpAsync()
@@ -67,7 +103,7 @@ namespace Spectrum.Core.ViewModels
 
             var affected = await _dataAccessService.SaveEntityAsync(user);
 
-            if(affected == 0)
+            if (affected == 0)
             {
                 _userDialogsService.Alert("One or more fields are incorrect.");
 

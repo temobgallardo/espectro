@@ -6,7 +6,9 @@ using System;
 
 namespace Spectrum.Droid.Views
 {
+#pragma warning disable CS0618 // Type or member is obsolete
     public class DatePickerFragment : DialogFragment, DatePickerDialog.IOnDateSetListener
+#pragma warning restore CS0618 // Type or member is obsolete
     {
         public DateTime SelectedDate { get; set; }
 

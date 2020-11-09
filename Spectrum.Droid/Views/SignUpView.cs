@@ -30,7 +30,9 @@ namespace Spectrum.Droid.Views
         protected void ShowDatePickerDialog()
         {
             var datePickerFragment = new DatePickerFragment();
+#pragma warning disable CS0618 // Type or member is obsolete
             datePickerFragment.Show(FragmentManager, "datePicker");
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
