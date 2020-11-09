@@ -35,10 +35,13 @@
   <ItemGroup />
   <ItemGroup>
     <Compile Include="Page\SignInView_Page.cs" />
+    <Compile Include="Page\SignUpView_Page.cs" />
+    <Compile Include="Page\SuccessSignupView_Page.cs" />
     <Compile Include="POPBases\AppManager.cs" />
     <Compile Include="POPBases\BasePage.cs" />
     <Compile Include="POPBases\BaseTextFixture.cs" />
     <Compile Include="POPBases\PlatformQuery.cs" />
+    <Compile Include="POPBases\SignUpView_Test.cs" />
     <Compile Include="SignInView_Test.cs" />
     <Compile Include="TestUtils.cs" />
   </ItemGroup>

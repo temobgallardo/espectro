@@ -32,6 +32,12 @@ namespace Spectrum.UITest.Page
             app.EnterText(pass);
             return this;
         }
+        public void SignUp()
+        {
+            app.WaitForElement(Current);
+            app.WaitForElement(TVSignUp);
+            app.Tap(TVSignUp);
+        }
         public void SignIn()
         {
             app.WaitForElement(Current);
