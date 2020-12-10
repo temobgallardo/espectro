@@ -18,7 +18,8 @@
   <string name="add_user_btn_create_account">Create account</string>
   <string name="add_user_title">Sign up</string>
   <string name="btn_select_service_date">Select Date</string>
-  <string name="tv_successful_signup">Successful Sign Up!</string>
+  <!--Successful Signup-->
+  <string name="tv_successful_signup">Account successfully created!</string>
   <string name="title_success_signup">Success!</string>
   <!--Account View-->
   <string name="av_title">Accounts</string>
