@@ -84,7 +84,7 @@
     <Compile Include="Views\SignUpView.cs" />
     <Compile Include="Views\SignInView.cs" />
     <Compile Include="Views\SplashScreenView.cs" />
-    <Compile Include="Views\DatePickerFragment.cs" />
+    <Compile Include="Controls\DatePickerFragment.cs" />
     <Compile Include="Views\SuccessSignupView.cs" />
   </ItemGroup>
   <ItemGroup>

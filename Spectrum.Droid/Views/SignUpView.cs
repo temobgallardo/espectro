@@ -3,9 +3,9 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Spectrum.Core.ViewModels;
+using Spectrum.Droid.Controls;
 using System;
 
 namespace Spectrum.Droid.Views
@@ -24,17 +24,16 @@ namespace Spectrum.Droid.Views
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowHomeEnabled(true);
             SupportActionBar.Title = ApplicationContext.Resources.GetString(Resource.String.add_user_title);
-
             _tvDatePicker = FindViewById<TextView>(Resource.Id.tv_dp_service_start);
+            _datePickerFragment = new DatePickerFragment(delegate (DateTime time)
+            {
+                _tvDatePicker.Text = time.ToLongDateString();
+            });
             _tvDatePicker.Click += DateSelected_OnClick;
         }
 
         void DateSelected_OnClick(object sender, EventArgs args)
         {
-            _datePickerFragment = new DatePickerFragment(delegate (DateTime time)
-            {
-                _tvDatePicker.Text = time.ToLongDateString();
-            });
 #pragma warning disable CS0618 // Type or member is obsolete
             _datePickerFragment.Show(FragmentManager, "datePicker");
 #pragma warning restore CS0618 // Type or member is obsolete  

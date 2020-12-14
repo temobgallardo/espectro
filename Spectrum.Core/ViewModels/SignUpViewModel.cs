@@ -139,7 +139,7 @@ namespace Spectrum.Core.ViewModels
                 FirstName = _firstName,
                 LastName = _lastName,
                 Password = _password,
-                Start = ServiceDate,
+                Start = _serviceDate,
                 PhoneNumber = _phoneNumberNotFormated,
                 UserName = _userName
             };
