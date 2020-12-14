@@ -1,8 +1,10 @@
 ﻿using Acr.UserDialogs;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using Spectrum.Repository.Abstractions;
 using Spectrum.Repository.Entities;
+using System;
 using System.Threading.Tasks;
 
 namespace Spectrum.Core.ViewModels
@@ -15,7 +17,7 @@ namespace Spectrum.Core.ViewModels
         private string _userName;
         private string _password;
 
-        public bool IsUserOrPassOk
+        public bool AreUserAndPassOk
         {
             get => _isUserOrPassOk;
             set => SetProperty(ref _isUserOrPassOk, value);
@@ -27,9 +29,7 @@ namespace Spectrum.Core.ViewModels
             {
                 SetProperty(ref _userName, value);
 
-                IsUserOrPassOk = Utils.Utils.IsNameValid(_userName) && Utils.Utils.IsPasswordValid(_password);
-
-                _userDialogsService.Toast("Remember: user name only accept alphanumerics.");
+                AreUserAndPassOk = Utils.Utils.IsNameValid(_userName) && Utils.Utils.IsPasswordValid(_password);
             }
         }
         public string Password
@@ -39,64 +39,66 @@ namespace Spectrum.Core.ViewModels
             {
                 SetProperty(ref _password, value);
 
-                IsUserOrPassOk = Utils.Utils.IsNameValid(_userName) && Utils.Utils.IsPasswordValid(_password);
+                AreUserAndPassOk = Utils.Utils.IsNameValid(_userName) && Utils.Utils.IsPasswordValid(_password);
 
-
-                _userDialogsService.Toast("Password must contain: \nFrom 8 - 15 characters.\nAt least one words and digit.\nFollowing characters must be different.");
+                RaiseErrorInteractionOnPasswordIssue(Utils.Utils.IsPasswordValid(_password));
             }
         }
         public IMvxAsyncCommand SignInCommand { get; private set; }
         public IMvxAsyncCommand SignUpCommand { get; private set; }
-        public IMvxAsyncCommand BackCommand { get; private set; }
 
-        public SignInViewModel(IMvxNavigationService navService, IDataAccessService<User> dataAccessService, IUserDialogs userDialogs) : base(navService)
+        public SignInViewModel(IMvxLogProvider logProvider, IMvxNavigationService navService, IDataAccessService<User> dataAccessService, IUserDialogs userDialogs) : base(logProvider, navService)
         {
-            IsUserOrPassOk = false;
+            AreUserAndPassOk = false;
             _userDialogsService = userDialogs;
             _dataAccessService = dataAccessService;
             SignInCommand = new MvxAsyncCommand(SignInAsync);
             SignUpCommand = new MvxAsyncCommand(SignUpAsync);
-            BackCommand = new MvxAsyncCommand(Back);
         }
 
-        public void AlertOnUserNameIssue(bool ok)
+        public void RaiseErrorInteractionOnPasswordIssue(bool ok)
         {
-            if (ok) return;
+            if (ok)
+            {
+                ErrorInteraction.Raise(null);
+                return;
+            }
 
-            _userDialogsService.Alert("User name must: \n Be not empty.");
-        }
-
-        public void AlertOnPasswordIssue(bool ok)
-        {
-            if (ok) return;
-
-            _userDialogsService.Alert("Password must contain: \nFrom 8 - 15 characters.\nAt least one words and digit.\nFollowing characters must be different.");
+            ErrorInteraction.Raise("Password must contain: \nFrom 8 - 15 characters.\nAt least one letter and digit.\nFollowing characters must be different.");
         }
 
         private async Task SignUpAsync()
         {
-            await _navigationService.Navigate<SignUpViewModel>();
+            await NavigationService.Navigate<SignUpViewModel>();
         }
 
         public async Task SignInAsync()
         {
-            //AlertOnPasswordIssue(Utils.Utils.IsPasswordValid(Password));
-            //AlertOnUserNameIssue(Utils.Utils.IsNameValid(UserName));
+            _userDialogsService.ShowLoading("Loggin...");
+
             var user = new User() { UserName = _userName, Password = _password };
             var isSigned = await _dataAccessService.VerifyCredentials(user);
             if (!isSigned)
             {
-                _userDialogsService.Alert("Your user is incorrect. Try again or log in with different credentials");
-                
+                _userDialogsService.Alert("Your user is incorrect. Try again or log in with a different account.");
+
                 return;
             }
 
-            await _navigationService.Navigate<AccountsViewModel>();
+            _userDialogsService.HideLoading();
+
+            var toastConfig = new ToastConfig("Successfully Logged!")
+                .SetPosition(ToastPosition.Top);
+            _userDialogsService.Toast(toastConfig);
+
+            await Task.Delay(TimeSpan.FromSeconds(2));
+
+            await NavigationService.Navigate<AccountsViewModel>();
         }
 
-        private async Task Back()
+        protected override async Task OnBackCommand()
         {
-            await _navigationService.Close(this);
+            await NavigationService.Close(this);
         }
     }
 }

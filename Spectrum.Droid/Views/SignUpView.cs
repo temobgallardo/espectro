@@ -2,17 +2,21 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Spectrum.Core.ViewModels;
+using System;
 
 namespace Spectrum.Droid.Views
 {
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme", NoHistory = true)]
-    public class SignUpView : MvxAppCompatActivity<SignUpViewModel>
+    public class SignUpView : BaseView<SignUpViewModel>
     {
-        private Button _button;
+        private TextView _tvDatePicker;
+        private DatePickerFragment _datePickerFragment;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -20,19 +24,20 @@ namespace Spectrum.Droid.Views
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowHomeEnabled(true);
             SupportActionBar.Title = ApplicationContext.Resources.GetString(Resource.String.add_user_title);
-            _button = FindViewById<Button>(Resource.Id.dp_service_start);
-            _button.Click += delegate
-            {
-                ShowDatePickerDialog();
-            };
+
+            _tvDatePicker = FindViewById<TextView>(Resource.Id.tv_dp_service_start);
+            _tvDatePicker.Click += DateSelected_OnClick;
         }
 
-        protected void ShowDatePickerDialog()
+        void DateSelected_OnClick(object sender, EventArgs args)
         {
-            var datePickerFragment = new DatePickerFragment();
+            _datePickerFragment = new DatePickerFragment(delegate (DateTime time)
+            {
+                _tvDatePicker.Text = time.ToLongDateString();
+            });
 #pragma warning disable CS0618 // Type or member is obsolete
-            datePickerFragment.Show(FragmentManager, "datePicker");
-#pragma warning restore CS0618 // Type or member is obsolete
+            _datePickerFragment.Show(FragmentManager, "datePicker");
+#pragma warning restore CS0618 // Type or member is obsolete  
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

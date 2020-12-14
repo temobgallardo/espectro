@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Spectrum.Repository.Abstractions;
@@ -21,7 +22,7 @@ namespace Spectrum.Core.ViewModels
         public bool IsBusy { get; private set; }
         public IMvxAsyncCommand LogoutCommand { get; private set; }
 
-        public AccountsViewModel(IMvxNavigationService navigationService, IDataAccessService<User> dataAccessService, IUserDialogs userDialogs) : base(navigationService)
+        public AccountsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IDataAccessService<User> dataAccessService, IUserDialogs userDialogs) : base(logProvider, navigationService)
         {
             _dataAccessService = dataAccessService;
             _userDialogsService = userDialogs;
@@ -37,8 +38,8 @@ namespace Spectrum.Core.ViewModels
             
             if (result)
             {
-                await _navigationService.Close(this);
-                await _navigationService.Navigate<SignInViewModel>();
+                await NavigationService.Close(this);
+                await NavigationService.Navigate<SignInViewModel>();
             }
         }
 

@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/add_user_et_first_name"
+            android:inputType="textPersonName"
             android:gravity="center"
             android:layout_margin="4dp"
             app:MvxBind="Text FirstName"/>
@@ -39,6 +40,7 @@
             android:hint="@string/add_user_et_last_name"
             android:gravity="center"
             android:layout_margin="4dp"
+            android:inputType="textPersonName"
             app:MvxBind="Text LastName"/>
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -56,6 +58,7 @@
             android:hint="@string/add_user_et_user_name"
             android:gravity="center"
             android:layout_margin="4dp"
+            android:inputType="text"
             app:MvxBind="Text UserName"/>
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -73,6 +76,7 @@
             android:hint="@string/add_user_et_phone_number"
             android:gravity="center"
             android:layout_margin="4dp"
+            android:inputType="phone"
             app:MvxBind="Text PhoneNumber, Mode=TwoWay"/>
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -84,34 +88,36 @@
         app:layout_constraintTop_toBottomOf="@id/til_phone_number"
         android:layout_marginTop="8dp">
         <EditText
-        android:id="@+id/et_password"
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_user_et_password"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:layout_margin="4dp"
+            app:MvxBind="Text Password"/>
+    </android.support.design.widget.TextInputLayout>
+    <TextView
+        android:id="@+id/tv_dp_service_start"
+        android:hint="@string/btn_select_service_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/add_user_et_password"
+        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         android:gravity="center"
-        android:inputType="textPassword"
-        android:layout_margin="4dp"
-        app:MvxBind="Text Password"/>
-    </android.support.design.widget.TextInputLayout>    
-    <Button
-        android:id="@+id/dp_service_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_select_service_date"
-        android:background="@drawable/abc_ab_share_pack_mtrl_alpha"
-        android:layout_margin="4dp"
-        android:padding="16dp"
-        app:layout_constraintRight_toRightOf="@id/til_password"
+        android:inputType="date"
+        android:background="@drawable/abc_edit_text_material"
+        app:layout_constraintLeft_toLeftOf="@id/til_password"
         app:layout_constraintTop_toBottomOf="@id/til_password"
-        />
+        app:MvxBind="Value ServiceDate Converter=StringToDateTime Way=OneWayToSource" />
     <Button
         android:id="@+id/btn_create_account"
         android:text="@string/add_user_btn_create_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/abc_btn_colored_material"
-        app:layout_constraintLeft_toLeftOf="@id/dp_service_start"
-        app:layout_constraintTop_toBottomOf="@id/dp_service_start"
+        app:layout_constraintLeft_toLeftOf="@id/tv_dp_service_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_dp_service_start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:MvxBind="Click SignUpCommand; Enabled AreFieldsPopulated"/>
 </android.support.constraint.ConstraintLayout>

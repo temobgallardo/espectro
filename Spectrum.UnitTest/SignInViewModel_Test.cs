@@ -31,7 +31,7 @@ namespace Spectrum.UnitTest
             _signInViewModel.UserName = "a" ;
             _signInViewModel.SignInCommand.Execute();
             _navigationServiceMock.Verify(nav => nav.Navigate<SuccessSignupViewModel>(null, default), Times.Once);
-            Assert.True(_signInViewModel.IsUserOrPassOk);
+            Assert.True(_signInViewModel.AreUserAndPassOk);
         }
     }
 }
