@@ -14,8 +14,8 @@ namespace Spectrum.Core.ViewModels
 {
     public class AccountsViewModel : BaseViewModel
     {
-        private readonly IDataAccessService<User> _dataAccessService;
-        private readonly IUserDialogs _userDialogsService;
+            private readonly IDataAccessService<User> _dataAccessService;
+            private readonly IUserDialogs _userDialogsService;
         // TODO: add a FullName field to displayed in the accounts_row text view
 
         public MvxObservableCollection<User> Users { get; private set; }
@@ -46,16 +46,14 @@ namespace Spectrum.Core.ViewModels
         public override async void ViewAppearing()
         {
             base.ViewAppearing();
-            await ReloadUsers();
+            await ReloadUsers().ConfigureAwait(false);
         }
 
         private async Task ReloadUsers()
         {
             if (IsBusy)
-            {
                 return;
-            }
-
+            
             try
             {
                 IsBusy = true;

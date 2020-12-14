@@ -11,7 +11,7 @@ using Spectrum.Core.ViewModels;
 namespace Spectrum.Droid.Views
 {
     [MvxActivityPresentation]
-    [Activity(Theme = "@style/AppTheme")]
+    [Activity(Theme = "@style/AppTheme", LaunchMode = Android.Content.PM.LaunchMode.SingleTask)]
     public class SignInView : BaseView<SignInViewModel>
     {
         private TextInputLayout _passwordInputLayout;

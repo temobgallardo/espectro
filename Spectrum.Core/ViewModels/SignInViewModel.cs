@@ -80,18 +80,19 @@ namespace Spectrum.Core.ViewModels
             var isSigned = await _dataAccessService.VerifyCredentials(user);
             if (!isSigned)
             {
-                _userDialogsService.Alert("Your user is incorrect. Try again or log in with a different account.");
+                _userDialogsService.Alert("Your account is incorrect. Try again or log in with a different account.");
 
+                _userDialogsService.HideLoading();
                 return;
             }
 
+            await Task.Delay(TimeSpan.FromSeconds(1));
+
             _userDialogsService.HideLoading();
 
-            var toastConfig = new ToastConfig("Successfully Logged!")
-                .SetPosition(ToastPosition.Top);
-            _userDialogsService.Toast(toastConfig);
+            _userDialogsService.Toast("Successfully Logged!");
 
-            await Task.Delay(TimeSpan.FromSeconds(2));
+            await Task.Delay(TimeSpan.FromSeconds(0.5));
 
             await NavigationService.Navigate<AccountsViewModel>();
         }
