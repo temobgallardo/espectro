@@ -23,7 +23,10 @@ namespace Spectrum.Utils
         public static bool IsNameValid(string name)
         {
             if (string.IsNullOrEmpty(name)) return false;
-            var pattern = "^[a-zA-Z]{1,}";
+            var pattern = @"^" + 
+                @"([A-Za-z0-9])" +  // Lower and Upper case chars and a digit
+                @"{1,}" +         // Min 8 Max 15 characters
+                @"$";               // Matches the end of the line;
             return Regex.IsMatch(name, pattern);
         }
         public static bool IsPhoneNumberValid(string phoneNumber)
