@@ -34,10 +34,10 @@ namespace Spectrum.UnitTest
         }
         [Theory]
         [InlineData("", false)]
-        [InlineData("1", false)]
-        [InlineData("a", false)]
-        [InlineData("1a", false)]
-        [InlineData("1234", false)]
+        [InlineData("1", true)]
+        [InlineData("a", true)]
+        [InlineData("1a", true)]
+        [InlineData("1234", true)]
         [InlineData("!@#$%^&", false)]
         [InlineData("!", false)]
         [InlineData("@", false)]
@@ -77,7 +77,7 @@ namespace Spectrum.UnitTest
         [InlineData("12345678901", "")]
         [InlineData("12a456bb901", "")]
         [InlineData("12#456%b901", "")]
-        [InlineData("1234567890", "(123) 456-7890")]
+        [InlineData("1234567890", "(123)-456-7890")]
         public static void FormatPhoneNumber_Test(string phoneNumber, string expected)
         {
             if (expected == string.Empty)

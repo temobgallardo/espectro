@@ -1,6 +1,6 @@
 ﻿using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using System;
 using System.Threading.Tasks;
 
 namespace Spectrum.Core.ViewModels
@@ -8,18 +8,16 @@ namespace Spectrum.Core.ViewModels
     public class SuccessSignupViewModel : BaseViewModel
     {
         public IMvxAsyncCommand NavigateToLoginCommand { get; private set; }
-        public IMvxAsyncCommand BackCommand { get; private set; }
 
-        public SuccessSignupViewModel(IMvxNavigationService navigationService) : base(navigationService)
+        public SuccessSignupViewModel(IMvxLogProvider loggerProvider, IMvxNavigationService navigationService) : base(loggerProvider, navigationService)
         {
-            NavigateToLoginCommand = new MvxAsyncCommand(Back);
-            BackCommand = new MvxAsyncCommand(Back);
+            NavigateToLoginCommand = new MvxAsyncCommand(OnBackCommand);
         }
 
-        private async Task Back()
+        protected override async Task OnBackCommand()
         {
-            await _navigationService.Close(this);
-            await _navigationService.Navigate<SignInViewModel>();
+            await NavigationService.Close(this);
+            await NavigationService.Navigate<SignInViewModel>();
         }
     }
 }

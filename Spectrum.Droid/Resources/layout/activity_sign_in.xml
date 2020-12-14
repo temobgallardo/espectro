@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp">
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/et_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,10 +28,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="@id/til_user_name"
-        app:layout_constraintTop_toBottomOf="@id/til_user_name"
-        android:layout_marginTop="8dp">
-        <EditText
+        app:layout_constraintTop_toBottomOf="@id/til_user_name">
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         android:background="@drawable/abc_btn_colored_material"
         app:layout_constraintTop_toBottomOf="@id/til_et_password"
         app:layout_constraintBottom_toTopOf="@id/tv_no_account_txt"
-        app:MvxBind="Click SignInCommand; Enabled IsUserOrPassOk"/>
+        app:MvxBind="Click SignInCommand; Enabled AreUserAndPassOk"/>
     <TextView
         android:id="@+id/tv_no_account_txt"
         android:text="@string/signin_tv_new_user"
