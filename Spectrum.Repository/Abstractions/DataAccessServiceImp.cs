@@ -44,5 +44,16 @@ namespace Spectrum.Repository.Abstractions
             //var user = await db.FindWithQueryAsync<User>(query);
             return await result.CountAsync() >= 1;
         }
+
+        public async Task<bool> AlreadyRegistered(User entity)
+        {
+            var db = await GetInstance();
+            var table = db.Table<User>();
+            var result = table.Where(x => x.UserName == entity.UserName 
+            && x.FirstName == entity.FirstName 
+            && x.LastName == entity.LastName 
+            && x.PhoneNumber == entity.PhoneNumber);
+            return await result.CountAsync() >= 1;
+        }
     }
 }

@@ -8,6 +8,11 @@ namespace Spectrum.Repository.Services
 {
     public class FakeUserAccessDataService : IDataAccessService<User>
     {
+        public Task<bool> AlreadyRegistered(User entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> DeleteAllEntitiesAsync()
         {
             return await Task.FromResult(1);

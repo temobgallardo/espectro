@@ -35,6 +35,8 @@ namespace Spectrum.Core.ViewModels
             {
                 SetProperty(ref _firstName, value);
                 AreFieldsPopulated = AreFieldsRight();
+                var isOk = Utils.Utils.IsNameValid(FirstName);
+                RaiseErrorInteraction(isOk, "First Name must be alphanumeric.");
             }
         }
         public string LastName
@@ -43,7 +45,9 @@ namespace Spectrum.Core.ViewModels
             set
             {
                 SetProperty(ref _lastName, value);
+                var isOk = Utils.Utils.IsNameValid(LastName);
                 AreFieldsPopulated = AreFieldsRight();
+                RaiseErrorInteraction(isOk, "Last Name must be alphanumeric.");
             }
         }
         public string UserName
@@ -52,7 +56,9 @@ namespace Spectrum.Core.ViewModels
             set
             {
                 SetProperty(ref _userName, value);
+                var isOk = Utils.Utils.IsNameValid(UserName);
                 AreFieldsPopulated = AreFieldsRight();
+                RaiseErrorInteraction(isOk, "User Name must be alphanumeric.");
             }
         }
         public string Password
@@ -61,7 +67,9 @@ namespace Spectrum.Core.ViewModels
             set
             {
                 SetProperty(ref _password, value);
+                var isOk = Utils.Utils.IsPasswordValid(Password);
                 AreFieldsPopulated = AreFieldsRight();
+                RaiseErrorInteraction(isOk, "Password must contain: From 8 - 15 characters. At least one letter and digit. Following characters must be different.");
             }
         }
         // Todo: First time phone number is typed will be erased, an if playing with it will do the same. It should be formated.
@@ -89,19 +97,27 @@ namespace Spectrum.Core.ViewModels
 
                 SetProperty(ref _phoneNumber, value);
 
+                var isOk = _isPhoneNumberAlreadyFormatted || Utils.Utils.IsPhoneNumberValid(PhoneNumber);
                 AreFieldsPopulated = AreFieldsRight();
+                RaiseErrorInteraction(isOk, "Phone Number must be numeric and has 10 digits.");
             }
         }
         public DateTime ServiceDate
         {
             get => _serviceDate;
-            set => SetProperty(ref _serviceDate, value);
+            set { 
+                SetProperty(ref _serviceDate, value);
+
+                var isOk = Utils.Utils.IsServiceDateCurrent(_serviceDate);
+                AreFieldsPopulated = AreFieldsRight();
+                RaiseErrorInteraction(isOk, $"Service Date must be between {DateTime.Now} and {DateTime.Now.AddDays(30)}.");
+            }
         }
         public IMvxAsyncCommand SignUpCommand { get; private set; }
 
         public SignUpViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IDataAccessService<User> dataAccessService, IUserDialogs userDialogs) : base(logProvider, navigationService)
         {
-            AreFieldsPopulated = false;
+            AreFieldsPopulated = true;
             _isPhoneNumberAlreadyFormatted = false;
             _userDialogsService = userDialogs;
             _dataAccessService = dataAccessService;
@@ -110,26 +126,33 @@ namespace Spectrum.Core.ViewModels
 
         private bool AreFieldsRight()
         {
-            // TODO: Errase this
-            //return true;
-
             try
             {
                 var isPhoneOk = _isPhoneNumberAlreadyFormatted || Utils.Utils.IsPhoneNumberValid(PhoneNumber);
 
-                if (Utils.Utils.IsNameValid(FirstName) 
-                    && Utils.Utils.IsNameValid(LastName) 
-                    && Utils.Utils.IsNameValid(UserName) 
-                    && Utils.Utils.IsPasswordValid(Password) 
+                if (Utils.Utils.IsNameValid(FirstName)
+                    && Utils.Utils.IsNameValid(LastName)
+                    && Utils.Utils.IsNameValid(UserName)
+                    && Utils.Utils.IsPasswordValid(Password)
+                    && Utils.Utils.IsServiceDateCurrent(ServiceDate)
                     && isPhoneOk)
-                {
                     return true;
-                }
             }
             catch (ArgumentException)
             { }
 
             return false;
+        }
+
+        public void RaiseErrorInteraction(bool ok, string message)
+        {
+            if (ok)
+            {
+                ErrorInteraction.Raise(null);
+                return;
+            }
+
+            ErrorInteraction.Raise(message);
         }
 
         private async Task SignUpAsync()
@@ -143,6 +166,15 @@ namespace Spectrum.Core.ViewModels
                 PhoneNumber = _phoneNumberNotFormated,
                 UserName = _userName
             };
+
+            var alreadyRegistered = await _dataAccessService.AlreadyRegistered(user);
+
+            if (alreadyRegistered)
+            {
+                _userDialogsService.Alert("This user has already Sign up, try with a different user, first and last name, and phone.");
+
+                return;
+            }
 
             var affected = await _dataAccessService.SaveEntityAsync(user);
 
