@@ -50,9 +50,9 @@ namespace Spectrum.Repository.Abstractions
             var db = await GetInstance();
             var table = db.Table<User>();
             var result = table.Where(x => x.UserName == entity.UserName 
-            && x.FirstName == entity.FirstName 
-            && x.LastName == entity.LastName 
-            && x.PhoneNumber == entity.PhoneNumber);
+            || x.FirstName == entity.FirstName 
+            || x.LastName == entity.LastName 
+            || x.PhoneNumber == entity.PhoneNumber);
             return await result.CountAsync() >= 1;
         }
     }

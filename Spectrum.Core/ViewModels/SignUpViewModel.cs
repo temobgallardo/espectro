@@ -36,6 +36,7 @@ namespace Spectrum.Core.ViewModels
                 SetProperty(ref _firstName, value);
                 AreFieldsPopulated = AreFieldsRight();
                 var isOk = Utils.Utils.IsNameValid(FirstName);
+                // TODO: Move this hard-coded message to a config file
                 RaiseErrorInteraction(isOk, "First Name must be alphanumeric.");
             }
         }
@@ -47,6 +48,7 @@ namespace Spectrum.Core.ViewModels
                 SetProperty(ref _lastName, value);
                 var isOk = Utils.Utils.IsNameValid(LastName);
                 AreFieldsPopulated = AreFieldsRight();
+                // TODO: Move this hard-coded message to a config file
                 RaiseErrorInteraction(isOk, "Last Name must be alphanumeric.");
             }
         }
@@ -58,6 +60,7 @@ namespace Spectrum.Core.ViewModels
                 SetProperty(ref _userName, value);
                 var isOk = Utils.Utils.IsNameValid(UserName);
                 AreFieldsPopulated = AreFieldsRight();
+                // TODO: Move this hard-coded message to a config file
                 RaiseErrorInteraction(isOk, "User Name must be alphanumeric.");
             }
         }
@@ -69,6 +72,7 @@ namespace Spectrum.Core.ViewModels
                 SetProperty(ref _password, value);
                 var isOk = Utils.Utils.IsPasswordValid(Password);
                 AreFieldsPopulated = AreFieldsRight();
+                // TODO: Move this hard-coded message to a config file
                 RaiseErrorInteraction(isOk, "Password must contain: From 8 - 15 characters. At least one letter and digit. Following characters must be different.");
             }
         }
@@ -99,7 +103,8 @@ namespace Spectrum.Core.ViewModels
 
                 var isOk = _isPhoneNumberAlreadyFormatted || Utils.Utils.IsPhoneNumberValid(PhoneNumber);
                 AreFieldsPopulated = AreFieldsRight();
-                RaiseErrorInteraction(isOk, "Phone Number must be numeric and has 10 digits.");
+                // TODO: Move this hard-coded message to a config file
+                RaiseErrorInteraction(isOk, "Phone Number must be numeric and have 10 digits.");
             }
         }
         public DateTime ServiceDate
@@ -110,6 +115,7 @@ namespace Spectrum.Core.ViewModels
 
                 var isOk = Utils.Utils.IsServiceDateCurrent(_serviceDate);
                 AreFieldsPopulated = AreFieldsRight();
+                // TODO: Move this hard-coded message to a config file
                 RaiseErrorInteraction(isOk, $"Service Date must be between {DateTime.Now} and {DateTime.Now.AddDays(30)}.");
             }
         }
@@ -171,6 +177,7 @@ namespace Spectrum.Core.ViewModels
 
             if (alreadyRegistered)
             {
+                // TODO: Move this hard-coded message to a config file
                 _userDialogsService.Alert("This user has already Sign up, try with a different user, first and last name, and phone.");
 
                 return;
@@ -180,6 +187,7 @@ namespace Spectrum.Core.ViewModels
 
             if (affected == 0)
             {
+                // TODO: Move this hard-coded message to a config file
                 _userDialogsService.Alert("One or more fields are incorrect.");
 
                 return;
