@@ -41,7 +41,7 @@
     <Compile Include="POPBases\BasePage.cs" />
     <Compile Include="POPBases\BaseTextFixture.cs" />
     <Compile Include="POPBases\PlatformQuery.cs" />
-    <Compile Include="POPBases\SignUpView_Test.cs" />
+    <Compile Include="SignUpView_Test.cs" />
     <Compile Include="SignInView_Test.cs" />
     <Compile Include="TestUtils.cs" />
   </ItemGroup>

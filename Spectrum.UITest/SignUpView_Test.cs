@@ -1,8 +1,9 @@
 ﻿using NUnit.Framework;
 using Spectrum.UITest.Page;
+using Spectrum.UITest.POPBases;
 using Xamarin.UITest;
 
-namespace Spectrum.UITest.POPBases
+namespace Spectrum.UITest
 {
     class SignUpView_Test : BaseTestFixture
     {
@@ -25,6 +26,7 @@ namespace Spectrum.UITest.POPBases
                 .EditPhoneNumber("1234567890")
                 .EditUserName(userName)
                 .EditPassword(password)
+                .EditServiceDate()
                 .SignUp();
 
             new SuccessSignupView_Page()
@@ -36,14 +38,15 @@ namespace Spectrum.UITest.POPBases
             new SignInView_Page()
                 .SignUp();
 
-            var userName = "Temo";
+            var userName = "Temo2";
             var password = "12AB123ab";
             new SignUpView_Page()
                 .EditFirstName(userName)
-                .EditLastName("Banos")
-                .EditPhoneNumber("1234567890")
+                .EditLastName("Banos2")
+                .EditPhoneNumber("1234567892")
                 .EditUserName(userName)
                 .EditPassword(password)
+                .EditServiceDate()
                 .SignUp();
 
             new SuccessSignupView_Page()

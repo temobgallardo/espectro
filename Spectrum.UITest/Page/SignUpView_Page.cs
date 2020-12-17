@@ -10,6 +10,10 @@ namespace Spectrum.UITest.Page
         public Query ETUserName = x => x.Marked("et_user_name");
         public Query ETPhoneNumbmer = x => x.Marked("et_phone_number");
         public Query ETPassword = x => x.Marked("et_password");
+        public Query TVServiceDate = x => x.Marked("tv_dp_service_start");
+        public Query BtnServiceOk = x => x.Marked("OK");
+        public Query BtnServiceCancel = x => x.Marked("CANCEL");
+        public Query DPServiceDatePicker = x => x.Marked("datePicker");
         public Query BtnSignUp = x => x.Marked("btn_create_account");
         public Query Current = x => x.Marked("Sign up");
 
@@ -55,6 +59,15 @@ namespace Spectrum.UITest.Page
             app.WaitForElement(ETPassword);
             app.ClearText(ETPassword);
             app.EnterText(pass);
+            return this;
+        }
+        public SignUpView_Page EditServiceDate()
+        {
+            app.WaitForElement(Current);
+            app.WaitForElement(TVServiceDate);
+            app.Tap(TVServiceDate);
+            app.WaitForElement(DPServiceDatePicker);
+            app.Tap(BtnServiceOk);
             return this;
         }
         public void SignUp()
