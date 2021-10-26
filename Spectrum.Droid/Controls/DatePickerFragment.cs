@@ -12,11 +12,11 @@ namespace Spectrum.Droid.Controls
 #pragma warning restore CS0618 // Type or member is obsolete
     {
         public static readonly string TAG = "Spectrum:" + typeof(DatePickerFragment).Name.ToUpper();
-        readonly Action<DateTime> _dateSelectedHandler = delegate { };
+        public Action<DateTime> DateSelectedHandler { get; set; } = delegate { };
 
         public DatePickerFragment(Action<DateTime> action)
         {
-            _dateSelectedHandler = action;
+            DateSelectedHandler = action;
         }
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
@@ -27,7 +27,7 @@ namespace Spectrum.Droid.Controls
         public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth)
         {
             Log.Debug(TAG, new DateTime(year, month + 1, dayOfMonth).ToLongDateString());
-            _dateSelectedHandler(new DateTime(year, month + 1, dayOfMonth));
+            DateSelectedHandler(new DateTime(year, month + 1, dayOfMonth));
         }
     }
 }

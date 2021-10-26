@@ -116,5 +116,20 @@ namespace Spectrum.Droid.Views
             set.Bind(this).For(v => v.ErrorInteraction).To(vm => vm.ErrorInteraction);
             set.Apply();
         }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            if (_datePickerFragment != null)
+            {
+                _datePickerFragment.DateSelectedHandler -= SetDateTime;
+            }
+
+            if (_tvDatePicker != null)
+            {
+                _tvDatePicker.Click -= DateSelected_OnClick;
+            }
+        }
     }
 }
